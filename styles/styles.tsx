@@ -28,7 +28,7 @@ export const globalStyles = (
 
       a {
         text-decoration: none;
-        color: white;
+        color: black;
       }
 
       input,
