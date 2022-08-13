@@ -76,7 +76,7 @@ const SiteHeader = () => {
               }
             `}
             onClick={() => {
-              router.push('/login');
+              router.push('/user/login');
             }}>
             로그인
           </button>

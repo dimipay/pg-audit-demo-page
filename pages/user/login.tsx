@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import Checkbox from '../components/form/CheckBox';
-import TextInput from '../components/form/TextInput';
+import Checkbox from '../../components/form/CheckBox';
+import TextInput from '../../components/form/TextInput';
 
 const LoginPage = () => {
   const [emailValue, setEmailValue] = useState('');
@@ -95,7 +95,7 @@ const LoginPage = () => {
                   color: #161b28;
                 }
               `}>
-              <Link href="/signup">회원가입</Link>
+              <Link href="/user/register">회원가입</Link>
               <span>| </span>
               <Link href="/find-password">비밀번호 찾기</Link>
             </div>

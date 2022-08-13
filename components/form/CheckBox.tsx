@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
 
-import checkSvg from '../../public/checked.svg';
-
 interface CheckboxProps {
   label: string;
   inputId: string;
@@ -12,8 +10,6 @@ interface CheckboxProps {
 
 const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, checked, onChange }) => {
   const [isHovered, setHovered] = useState(false);
-
-  console.log(checkSvg);
 
   return (
     <label
