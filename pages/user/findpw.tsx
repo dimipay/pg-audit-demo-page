@@ -1,13 +1,10 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import Checkbox from '../../components/form/CheckBox';
 import TextInput from '../../components/form/TextInput';
 
-const LoginPage = () => {
+const FindPWPage = () => {
   const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [emailSaveChecked, setEmailSaveChecked] = useState(false);
 
   return (
     <div
@@ -53,52 +50,22 @@ const LoginPage = () => {
               font-size: 1.4rem;
               font-weight: 500;
             `}>
-            로그인
+            비밀번호 찾기
           </span>
           <TextInput
-            label="이메일 주소"
+            label="비밀번호를 찾을 계정의 이메일 주소를 입력해주세요."
             inputId="email"
             value={emailValue}
             isSecret={false}
             onChange={(e) => setEmailValue(e.target.value)}
           />
-          <TextInput
-            label="비밀번호"
-            inputId="password"
-            value={passwordValue}
-            isSecret={true}
-            onChange={(e) => setPasswordValue(e.target.value)}
-          />
-          <Checkbox
-            label="로그인 정보 저장"
-            inputId="save-login"
-            checked={emailSaveChecked}
-            onChange={() => {
-              setEmailSaveChecked(!emailSaveChecked);
-            }}
-          />
           <div
             css={css`
               margin-top: 32px;
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-end;
               align-items: center;
             `}>
-            <div
-              css={css`
-                & a {
-                  font-size: 0.9rem;
-                  margin-right: 4px;
-                }
-
-                & a:hover {
-                  color: #161b28;
-                }
-              `}>
-              <Link href="/user/register">회원가입</Link>
-              <span>| </span>
-              <Link href="/user/findpw">비밀번호 찾기</Link>
-            </div>
             <button
               css={css`
                 padding: 11px 16px;
@@ -112,7 +79,7 @@ const LoginPage = () => {
                   background: #207377;
                 }
               `}>
-              로그인
+              비밀번호 찾기
             </button>
           </div>
         </div>
@@ -121,4 +88,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default FindPWPage;

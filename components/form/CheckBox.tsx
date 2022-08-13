@@ -55,7 +55,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, checked, onChange }
             opacity: ${checked ? 1 : 0};
             position: absolute;
             top: 5px;
-            left: 4px;
+            left: 3px;
             content: '';
             width: 14px;
             height: 10px;
