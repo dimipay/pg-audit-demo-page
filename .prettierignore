@@ -6,6 +6,8 @@ dist
 *.md
 
 *.js
+*.cjs
+*.mjs
 *.jsx
 
 .eslintrc.json
