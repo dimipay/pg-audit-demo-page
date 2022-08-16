@@ -52,9 +52,8 @@ const SiteHeader = () => {
             `}>
             <Link href="/">DIMIPAY</Link>
           </span>
-          <NavigateButton destination="/">상품목록</NavigateButton>
           <NavigateButton destination="/subscribe">정기구독</NavigateButton>
-          <NavigateButton destination="/">고객센터</NavigateButton>
+          {/* <NavigateButton destination="/">고객센터</NavigateButton> */}
           {/* <Link href="/">둘러보기</Link>
           <Link href="/">문의하기</Link> */}
         </div>
