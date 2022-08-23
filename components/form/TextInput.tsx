@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 const Label = styled.label`
   font-size: 0.9rem;
@@ -46,19 +47,17 @@ const InputStyle = css`
 interface TextInputProps {
   label: string;
   inputId: string;
-  value: string;
   isSecret: boolean;
+  register: UseFormRegister<FieldValues>;
   errorMessage?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
   label,
   inputId,
-  value,
   isSecret,
+  register,
   errorMessage,
-  onChange,
 }) => {
   const [isInputFocused, setInputFocused] = useState(false);
 
@@ -73,17 +72,17 @@ const TextInput: React.FC<TextInputProps> = ({
       <InputWrapper isErrored={errorMessage !== undefined} isFocused={isInputFocused}>
         <input
           css={InputStyle}
-          name={inputId}
           id={inputId}
-          value={value}
           type={isSecret ? 'password' : 'text'}
           onFocus={() => {
             setInputFocused(true);
           }}
-          onBlur={() => {
-            setInputFocused(false);
-          }}
-          onChange={onChange}
+          {...register(inputId, {
+            onBlur: () => {
+              setInputFocused(false);
+            },
+            required: '필수 항목입니다.',
+          })}
         />
       </InputWrapper>
       {errorMessage !== undefined ? (

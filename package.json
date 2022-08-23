@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently \"tsc --watch --project server.tsconfig.json\" \"nodemon dist/app.js\"",
     "build": "next build & tsc --project server.tsconfig.json",
-    "start": "yarn server-build & yarn server-start",
+    "start": "yarn node dist/app.js",
     "front-dev": "next dev",
     "postinstall": "husky install",
     "lint": "eslint --ext .tsx,.ts .",
@@ -23,7 +23,10 @@
     "express": "^4.18.1",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.34.2",
+    "react-spinners": "^0.13.4",
+    "recoil": "^0.7.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",

@@ -1,10 +1,15 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import TextInput from '../../components/form/TextInput';
 
 const FindPWPage = () => {
-  const [emailValue, setEmailValue] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <div
@@ -26,14 +31,17 @@ const FindPWPage = () => {
           justify-content: center;
           align-items: center;
         `}>
-        <div
+        <form
           css={css`
             padding: 0 20px;
             width: 100%;
             max-width: 470px;
             display: flex;
             flex-direction: column;
-          `}>
+          `}
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+          })}>
           <span
             css={css`
               & a {
@@ -55,9 +63,8 @@ const FindPWPage = () => {
           <TextInput
             label="비밀번호를 찾을 계정의 이메일 주소를 입력해주세요."
             inputId="email"
-            value={emailValue}
             isSecret={false}
-            onChange={(e) => setEmailValue(e.target.value)}
+            register={register}
           />
           <div
             css={css`
@@ -67,6 +74,7 @@ const FindPWPage = () => {
               align-items: center;
             `}>
             <button
+              type="submit"
               css={css`
                 padding: 11px 16px;
                 border: none;
@@ -82,7 +90,7 @@ const FindPWPage = () => {
               비밀번호 찾기
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

@@ -14,6 +14,8 @@ interface SubscribeProduct {
 const SubscribeInfoPage: React.FC<{
   products: Array<SubscribeProduct>;
 }> = ({ products }) => {
+  console.log(products);
+
   return (
     <div
       css={css`

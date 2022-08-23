@@ -1,13 +1,15 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Checkbox from '../../components/form/CheckBox';
 import TextInput from '../../components/form/TextInput';
 
 const LoginPage = () => {
-  const [emailValue, setEmailValue] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [emailSaveChecked, setEmailSaveChecked] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <div
@@ -29,14 +31,17 @@ const LoginPage = () => {
           justify-content: center;
           align-items: center;
         `}>
-        <div
+        <form
           css={css`
             padding: 0 20px;
             width: 100%;
             max-width: 470px;
             display: flex;
             flex-direction: column;
-          `}>
+          `}
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+          })}>
           <span
             css={css`
               & a {
@@ -55,28 +60,9 @@ const LoginPage = () => {
             `}>
             로그인
           </span>
-          <TextInput
-            label="이메일 주소"
-            inputId="email"
-            value={emailValue}
-            isSecret={false}
-            onChange={(e) => setEmailValue(e.target.value)}
-          />
-          <TextInput
-            label="비밀번호"
-            inputId="password"
-            value={passwordValue}
-            isSecret={true}
-            onChange={(e) => setPasswordValue(e.target.value)}
-          />
-          <Checkbox
-            label="로그인 정보 저장"
-            inputId="save-login"
-            checked={emailSaveChecked}
-            onChange={() => {
-              setEmailSaveChecked(!emailSaveChecked);
-            }}
-          />
+          <TextInput label="이메일 주소" inputId="email" isSecret={false} register={register} />
+          <TextInput label="비밀번호" inputId="password" isSecret={true} register={register} />
+          <Checkbox label="로그인 정보 저장" inputId="save-login" register={register} />
           <div
             css={css`
               margin-top: 32px;
@@ -100,6 +86,7 @@ const LoginPage = () => {
               <Link href="/user/findpw">비밀번호 찾기</Link>
             </div>
             <button
+              type="submit"
               css={css`
                 padding: 11px 16px;
                 border: none;
@@ -115,7 +102,7 @@ const LoginPage = () => {
               로그인
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

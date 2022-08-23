@@ -1,15 +1,16 @@
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface CheckboxProps {
   label: string;
   inputId: string;
-  checked: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<FieldValues>;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, checked, onChange }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, register }) => {
   const [isHovered, setHovered] = useState(false);
+  const [isChecked, setChecked] = useState(false);
 
   return (
     <label
@@ -31,11 +32,13 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, checked, onChange }
           display: none;
           position: relative;
         `}
-        name={inputId}
         id={inputId}
-        checked={checked}
         type="checkbox"
-        onChange={onChange}
+        {...register(inputId, {
+          onChange: () => {
+            setChecked(!isChecked);
+          },
+        })}
       />
       <label
         htmlFor={inputId}
@@ -44,15 +47,15 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, inputId, checked, onChange }
           height: 24px;
           cursor: pointer;
           outline: none;
-          border: ${isHovered || checked ? '2px solid #2ea4ab' : '2px solid #e6e6e6'};
+          border: ${isHovered || isChecked ? '2px solid #2ea4ab' : '2px solid #e6e6e6'};
           border-radius: 8px;
-          background: ${checked ? '#2ea4ab' : isHovered ? 'rgba(46, 164, 171, 0.2)' : '#fff'};
+          background: ${isChecked ? '#2ea4ab' : isHovered ? 'rgba(46, 164, 171, 0.2)' : '#fff'};
           position: relative;
           display: inline-block;
           transition: all 0.2s ease-in-out;
 
           &:after {
-            opacity: ${checked ? 1 : 0};
+            opacity: ${isChecked ? 1 : 0};
             position: absolute;
             top: 5px;
             left: 3px;
