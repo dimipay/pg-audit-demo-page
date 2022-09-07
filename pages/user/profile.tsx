@@ -481,7 +481,17 @@ const UserProfilePage: React.FC = () => {
                 font-size: 1rem;
                 font-weight: 500;
               }
-            `}>
+            `}
+            onClick={() => {
+              deleteCookie('accessToken');
+              deleteCookie('refreshToken');
+              setUser({
+                isLoggedIn: false,
+                name: '',
+                email: '',
+              });
+              router.push('/');
+            }}>
             <FontAwesomeIcon
               icon={faRightFromBracket}
               color="#ffffff"
