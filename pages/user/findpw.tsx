@@ -65,6 +65,7 @@ const FindPWPage = () => {
             inputId="email"
             isSecret={false}
             register={register}
+            errors={errors}
           />
           <div
             css={css`

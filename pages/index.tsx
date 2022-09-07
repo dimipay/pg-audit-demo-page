@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
 
 import DemoApp from '../public/images/DemoApp.png';
@@ -25,13 +26,12 @@ const Home = () => {
         css={css`
           background: #38c8d1;
           width: 100%;
-          height: 100%;
+          height: calc(100vh - 60px);
           display: flex;
           justify-content: center;
         `}>
         <div
           css={css`
-            padding-top: 60px;
             width: 100%;
             height: 100%;
             display: flex;
@@ -64,12 +64,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div
-        css={css`
-          background: #f5f5f5;
-          width: 100%;
-          height: 100%;
-        `}></div>
+      <SiteFooter />
     </div>
   );
 };

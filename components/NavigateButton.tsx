@@ -1,14 +1,13 @@
 import { css } from '@emotion/react';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 
 interface NavigateButtonProps {
+  router: NextRouter;
   destination: string;
   children?: string;
 }
 
-const NavigateButton: React.FC<NavigateButtonProps> = ({ destination, children }) => {
-  const router = useRouter();
-
+const NavigateButton: React.FC<NavigateButtonProps> = ({ router, destination, children }) => {
   return (
     <button
       css={css`

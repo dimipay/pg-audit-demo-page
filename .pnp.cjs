@@ -38,6 +38,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:11.10.0"],\
             ["@emotion/serialize", "npm:1.1.0"],\
             ["@emotion/styled", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:11.10.0"],\
+            ["@fortawesome/fontawesome-svg-core", "npm:6.2.0"],\
+            ["@fortawesome/free-regular-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/free-solid-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/react-fontawesome", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.2.0"],\
             ["@next/eslint-plugin-next", "npm:12.2.5"],\
             ["@svgr/webpack", "npm:6.3.1"],\
             ["@types/express", "npm:4.17.13"],\
@@ -49,6 +53,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["airbnb", "npm:0.0.2"],\
             ["axios", "npm:0.27.2"],\
             ["babel-eslint", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:10.1.0"],\
+            ["babel-plugin-macros", "npm:3.1.0"],\
             ["concurrently", "npm:7.3.0"],\
             ["cookies-next", "npm:2.1.1"],\
             ["dotenv", "npm:16.0.1"],\
@@ -2810,6 +2815,72 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@fortawesome/fontawesome-common-types", [\
+        ["npm:6.2.0", {\
+          "packageLocation": "./.yarn/unplugged/@fortawesome-fontawesome-common-types-npm-6.2.0-baf560576e/node_modules/@fortawesome/fontawesome-common-types/",\
+          "packageDependencies": [\
+            ["@fortawesome/fontawesome-common-types", "npm:6.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fortawesome/fontawesome-svg-core", [\
+        ["npm:6.2.0", {\
+          "packageLocation": "./.yarn/unplugged/@fortawesome-fontawesome-svg-core-npm-6.2.0-01966a37cc/node_modules/@fortawesome/fontawesome-svg-core/",\
+          "packageDependencies": [\
+            ["@fortawesome/fontawesome-svg-core", "npm:6.2.0"],\
+            ["@fortawesome/fontawesome-common-types", "npm:6.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fortawesome/free-regular-svg-icons", [\
+        ["npm:6.2.0", {\
+          "packageLocation": "./.yarn/unplugged/@fortawesome-free-regular-svg-icons-npm-6.2.0-ed7d07673f/node_modules/@fortawesome/free-regular-svg-icons/",\
+          "packageDependencies": [\
+            ["@fortawesome/free-regular-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/fontawesome-common-types", "npm:6.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fortawesome/free-solid-svg-icons", [\
+        ["npm:6.2.0", {\
+          "packageLocation": "./.yarn/unplugged/@fortawesome-free-solid-svg-icons-npm-6.2.0-28111f7af7/node_modules/@fortawesome/free-solid-svg-icons/",\
+          "packageDependencies": [\
+            ["@fortawesome/free-solid-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/fontawesome-common-types", "npm:6.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fortawesome/react-fontawesome", [\
+        ["npm:0.2.0", {\
+          "packageLocation": "./.yarn/cache/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f-f652a0c217.zip/node_modules/@fortawesome/react-fontawesome/",\
+          "packageDependencies": [\
+            ["@fortawesome/react-fontawesome", "npm:0.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/@fortawesome-react-fontawesome-virtual-5ca55efc9c/0/cache/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f-f652a0c217.zip/node_modules/@fortawesome/react-fontawesome/",\
+          "packageDependencies": [\
+            ["@fortawesome/react-fontawesome", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.2.0"],\
+            ["@fortawesome/fontawesome-svg-core", "npm:6.2.0"],\
+            ["@types/fortawesome__fontawesome-svg-core", null],\
+            ["@types/react", "npm:18.0.17"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@fortawesome/fontawesome-svg-core",\
+            "@types/fortawesome__fontawesome-svg-core",\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@gar/promisify", [\
         ["npm:1.1.3", {\
           "packageLocation": "./.yarn/cache/@gar-promisify-npm-1.1.3-ac1a325862-4059f790e2.zip/node_modules/@gar/promisify/",\
@@ -5483,6 +5554,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:11.10.0"],\
             ["@emotion/serialize", "npm:1.1.0"],\
             ["@emotion/styled", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:11.10.0"],\
+            ["@fortawesome/fontawesome-svg-core", "npm:6.2.0"],\
+            ["@fortawesome/free-regular-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/free-solid-svg-icons", "npm:6.2.0"],\
+            ["@fortawesome/react-fontawesome", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.2.0"],\
             ["@next/eslint-plugin-next", "npm:12.2.5"],\
             ["@svgr/webpack", "npm:6.3.1"],\
             ["@types/express", "npm:4.17.13"],\
@@ -5494,6 +5569,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["airbnb", "npm:0.0.2"],\
             ["axios", "npm:0.27.2"],\
             ["babel-eslint", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:10.1.0"],\
+            ["babel-plugin-macros", "npm:3.1.0"],\
             ["concurrently", "npm:7.3.0"],\
             ["cookies-next", "npm:2.1.1"],\
             ["dotenv", "npm:16.0.1"],\

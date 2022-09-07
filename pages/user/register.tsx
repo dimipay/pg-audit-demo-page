@@ -1,15 +1,54 @@
 import { css } from '@emotion/react';
+import axios from 'axios';
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import { FieldValues, useForm } from 'react-hook-form';
+import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import Checkbox from '../../components/form/CheckBox';
 import TextInput from '../../components/form/TextInput';
+import { useEffect } from 'react';
+
+interface RegisterResponse {
+  accessToken: string;
+  refreshToken: string;
+}
 
 const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    watch,
+    formState: { errors, isSubmitting },
   } = useForm();
+
+  const router = useRouter();
+
+  const password = watch('password');
+
+  const fetchRegister = async (data: FieldValues) => {
+    try {
+      const response = await axios.post<RegisterResponse>(
+        'https://dimipay-pg-exam.herokuapp.com/auth/signup',
+        {
+          email: data.email,
+          password: data.password,
+          name: data.name,
+        },
+      );
+      setCookie('accessToken', response.data.accessToken);
+      setCookie('refreshToken', response.data.refreshToken);
+      return;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
+
+  useEffect(() => {
+    if (hasCookie('accessToken')) {
+      router.push('/');
+    }
+  }, []);
 
   return (
     <div
@@ -39,8 +78,9 @@ const RegisterPage = () => {
             display: flex;
             flex-direction: column;
           `}
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
+          onSubmit={handleSubmit(async (data) => {
+            await fetchRegister(data);
+            router.push('/');
           })}>
           <span
             css={css`
@@ -60,19 +100,83 @@ const RegisterPage = () => {
             `}>
             회원가입
           </span>
-          <TextInput label="이메일 주소" inputId="email" isSecret={false} register={register} />
-          <TextInput label="비밀번호" inputId="password" isSecret={true} register={register} />
+          <TextInput
+            label="이메일 주소"
+            inputId="email"
+            isSecret={false}
+            register={register}
+            errors={errors}
+            registerOption={{
+              required: '이메일 주소를 입력해주세요.',
+              pattern: {
+                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                message: '이메일 주소 형식이 올바르지 않습니다.',
+              },
+            }}
+          />
+          <TextInput
+            label="비밀번호"
+            inputId="password"
+            isSecret={true}
+            register={register}
+            errors={errors}
+            registerOption={{
+              required: '비밀번호를 입력해주세요.',
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]+$/g,
+                message: '비밀번호는 영문, 숫자, 특수문자를 포함해야 합니다.',
+              },
+              minLength: {
+                value: 8,
+                message: '비밀번호는 8자 이상이어야 합니다.',
+              },
+              maxLength: {
+                value: 20,
+                message: '비밀번호는 20자 이하여야 합니다.',
+              },
+            }}
+          />
           <TextInput
             label="비밀번호 확인"
             inputId="passwordCheck"
             isSecret={true}
             register={register}
+            errors={errors}
+            registerOption={{
+              required: '비밀번호 확인란을 입력해주세요.',
+              validate: (value) => value === password || '비밀번호가 일치하지 않습니다.',
+            }}
           />
-          <TextInput label="이름" inputId="name" isSecret={false} register={register} />
+          <TextInput
+            label="이름"
+            inputId="name"
+            isSecret={false}
+            register={register}
+            errors={errors}
+            registerOption={{
+              required: '이름을 입력해주세요.',
+              pattern: {
+                value: /^[가-힣]+$/g,
+                message: '이름 형식이 올바르지 않습니다.',
+              },
+              minLength: {
+                value: 2,
+                message: '이름은 2자 이상이어야 합니다.',
+              },
+              maxLength: {
+                value: 5,
+                message: '이름은 5자 이하여야 합니다.',
+              },
+            }}
+          />
           <Checkbox
             label="[필수] 개인정보 수집 및 이용 동의"
             inputId="personalData"
             register={register}
+            errors={errors}
+            registerOption={{
+              required: '개인정보 수집 및 이용에 동의해주세요.',
+            }}
           />
           <div
             css={css`
@@ -110,11 +214,13 @@ const RegisterPage = () => {
                 color: white;
                 transition: all 0.2s ease-in-out;
 
-                &:hover {
+                &:hover,
+                &:disabled {
                   background: #207377;
                 }
-              `}>
-              회원가입
+              `}
+              disabled={isSubmitting}>
+              {isSubmitting ? '가입 중...' : '가입하기'}
             </button>
           </div>
         </form>

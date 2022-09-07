@@ -1,22 +1,74 @@
 import { css } from '@emotion/react';
+import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { deleteCookie, getCookie, getCookies, hasCookie, setCookie } from 'cookies-next';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 import NavigateButton from './NavigateButton';
+import { useRecoilState } from 'recoil';
+import { globalUserState } from '../libs/atom';
+
+export interface RefreshResponse {
+  accessToken: string;
+  refreshToken: string;
+}
 
 const SiteHeader = () => {
   const router = useRouter();
 
+  const [user, setUser] = useRecoilState(globalUserState);
+
+  useEffect(() => {
+    if (hasCookie('accessToken')) {
+      axios('https://dimipay-pg-exam.herokuapp.com/auth/user', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${getCookie('accessToken')}`,
+        },
+      })
+        .then((response) => {
+          setUser({
+            isLoggedIn: true,
+            name: response.data.name,
+            email: response.data.email,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          if (error.response.data.code === 'TOKEN_EXPIRED') {
+            axios
+              .post<RefreshResponse>('https://dimipay-pg-exam.herokuapp.com/auth/refresh', {
+                refreshToken: getCookie('refreshToken'),
+              })
+              .then((response) => {
+                setCookie('accessToken', response.data.accessToken);
+                setCookie('refreshToken', response.data.refreshToken);
+                router.reload();
+              })
+              .catch((error) => {
+                console.log(error);
+                deleteCookie('accessToken');
+                deleteCookie('refreshToken');
+                router.reload();
+              });
+          }
+        });
+    }
+  }, []);
+
   return (
     <header
       css={css`
+        box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.1);
         width: 100%;
         height: 60px;
         display: flex;
         justify-content: center;
         text-align: center;
-        position: absolute;
-        top: 0;
-        left: 0;
         z-index: 999;
         background: #ffffff;
       `}>
@@ -25,7 +77,7 @@ const SiteHeader = () => {
           padding: 0 50px;
           max-width: 1050px;
           width: 100%;
-          height: 60px;
+          height: 100%;
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -52,33 +104,63 @@ const SiteHeader = () => {
             `}>
             <Link href="/">DIMIPAY</Link>
           </span>
-          <NavigateButton destination="/subscribe">정기구독</NavigateButton>
+          <NavigateButton router={router} destination="/subscribe">
+            정기구독
+          </NavigateButton>
           {/* <NavigateButton destination="/">고객센터</NavigateButton> */}
           {/* <Link href="/">둘러보기</Link>
           <Link href="/">문의하기</Link> */}
         </div>
-        <div>
-          <button
-            css={css`
-              padding: 7px 12px;
-              border: none;
-              border-radius: 8px;
-              background: #2ea4ab;
-              font-weight: 700;
-              font-size: 0.9rem;
-              line-height: 18px;
-              color: white;
-              transition: all 0.2s ease-in-out;
+        <div
+          css={css`
+            ${user.isLoggedIn ? `height: 20px; width: 20px;` : ''}
+          `}>
+          {user.isLoggedIn ? (
+            <button
+              css={css`
+                border: none;
+                background: transparent;
 
-              &:hover {
-                background: #207377;
-              }
-            `}
-            onClick={() => {
-              router.push('/user/login');
-            }}>
-            로그인
-          </button>
+                & svg,
+                & svg path {
+                  cursor: pointer;
+                }
+              `}
+              onClick={() => {
+                router.push('/user/profile');
+              }}>
+              <FontAwesomeIcon
+                icon={faUserCircle}
+                color="#262626"
+                style={{
+                  width: '20px',
+                  height: '20px',
+                }}
+              />
+            </button>
+          ) : (
+            <button
+              css={css`
+                padding: 7px 12px;
+                border: none;
+                border-radius: 8px;
+                background: #2ea4ab;
+                font-weight: 700;
+                font-size: 0.9rem;
+                line-height: 18px;
+                color: white;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                  background: #207377;
+                }
+              `}
+              onClick={() => {
+                router.push('/user/login');
+              }}>
+              로그인
+            </button>
+          )}
         </div>
       </nav>
     </header>

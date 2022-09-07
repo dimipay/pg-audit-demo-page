@@ -22,7 +22,9 @@ export const globalStyles = (
       }
 
       button,
-      a {
+      a,
+      select,
+      option {
         cursor: pointer;
       }
 

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldErrorsImpl, FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 const Label = styled.label`
   font-size: 0.9rem;
@@ -17,7 +17,7 @@ const InputWrapper = styled.div<{ isErrored: boolean; isFocused: boolean }>`
   border-radius: 8px;
   box-shadow: ${(props) =>
     props.isErrored
-      ? 'inset 0px 0px 0px 1px #ff0000, 0px 0px 0px 1px #ff0000 !important'
+      ? 'inset 0px 0px 0px 1px #f66570, 0px 0px 0px 1px #f66570 !important'
       : props.isFocused
       ? 'inset 0px 0px 0px 1px #2ea4ab, 0px 0px 0px 1px #2ea4ab !important'
       : 'inset 0px 0px 0px 1px #e6e6e6'};
@@ -49,7 +49,9 @@ interface TextInputProps {
   inputId: string;
   isSecret: boolean;
   register: UseFormRegister<FieldValues>;
-  errorMessage?: string;
+  errors: FieldErrorsImpl;
+  placeholder?: string;
+  registerOption?: RegisterOptions;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -57,9 +59,22 @@ const TextInput: React.FC<TextInputProps> = ({
   inputId,
   isSecret,
   register,
-  errorMessage,
+  errors,
+  placeholder,
+  registerOption,
 }) => {
   const [isInputFocused, setInputFocused] = useState(false);
+
+  if (registerOption)
+    registerOption.onBlur = () => {
+      setInputFocused(false);
+    };
+  else
+    registerOption = {
+      onBlur: () => {
+        setInputFocused(false);
+      },
+    };
 
   return (
     <div
@@ -69,31 +84,28 @@ const TextInput: React.FC<TextInputProps> = ({
         height: 60px;
       `}>
       <Label htmlFor={inputId}>{label}</Label>
-      <InputWrapper isErrored={errorMessage !== undefined} isFocused={isInputFocused}>
+      <InputWrapper isErrored={errors?.[inputId] !== undefined} isFocused={isInputFocused}>
         <input
           css={InputStyle}
           id={inputId}
           type={isSecret ? 'password' : 'text'}
+          placeholder={placeholder}
           onFocus={() => {
             setInputFocused(true);
           }}
-          {...register(inputId, {
-            onBlur: () => {
-              setInputFocused(false);
-            },
-            required: '필수 항목입니다.',
-          })}
+          {...register(inputId, registerOption)}
         />
       </InputWrapper>
-      {errorMessage !== undefined ? (
+      {errors?.[inputId] !== undefined ? (
         <span
           css={css`
             display: block;
             position: relative;
             margin-top: 4px;
-            color: #ff0000;
+            color: #f66570;
+            font-size: 0.9rem;
           `}>
-          {errorMessage}
+          {errors?.[inputId]?.message?.toString()}
         </span>
       ) : null}
     </div>
