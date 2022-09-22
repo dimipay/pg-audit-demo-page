@@ -57,6 +57,7 @@ const SiteFooter = () => {
           </span>
           <span
             css={css`
+              margin-right: auto;
               & a {
                 font-size: 2.3rem;
                 font-weight: 900;
@@ -65,6 +66,31 @@ const SiteFooter = () => {
             `}>
             <Link href="/">DIMIPAY</Link>
           </span>
+          <div
+            css={css`
+              margin-top: 5px;
+              margin-right: auto;
+              display: flex;
+              justify-content: flex-start;
+              & span a {
+                margin-right: 7px;
+                font-size: 0.9rem;
+                font-weight: 500;
+              }
+            `}>
+            <span>
+              <Link href="/">환불정보</Link>
+            </span>
+            <span>
+              <Link href="/">배송/교환규정</Link>
+            </span>
+            <span>
+              <Link href="/">이용약관</Link>
+            </span>
+            <span>
+              <Link href="/">개인정보취급방침</Link>
+            </span>
+          </div>
         </div>
         <div
           css={css`

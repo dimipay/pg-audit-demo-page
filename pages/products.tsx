@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { v4 as uuidv4 } from 'uuid';
 import Image, { StaticImageData } from 'next/image';
 
 import { globalUserState } from '../libs/atom';
@@ -129,16 +128,13 @@ const Products: React.FC<{
     window.AUTHNICE.requestPay({
       clientId: clientId,
       method: 'card',
-      orderId: uuidv4(),
+      orderId: Math.floor(Math.random() * 10 ** 8).toString(),
       amount: product.productPrice,
       goodsName: product.productName,
       returnUrl: 'https://dimipay-pg-exam.herokuapp.com/payment/serverAuth',
-      mailUserId: user.id,
-      mailReserved: JSON.stringify({
-        id: user.id,
-      }),
+      mallReserved: `{"id":"${user.id}"}`,
       fnError: (err) => {
-        alert(err.errorMsg);
+        console.log(err);
       },
     });
   };
