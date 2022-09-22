@@ -2,8 +2,9 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { globalStyles } from '../styles/styles';
 import { RecoilRoot } from 'recoil';
+import Script from 'next/script';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <Head>
@@ -21,6 +22,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {globalStyles}
       <Component {...pageProps} />
+      <Script src="https://pay.nicepay.co.kr/v1/js/"></Script>
     </RecoilRoot>
   );
-}
+};
+
+export default App;

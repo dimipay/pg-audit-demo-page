@@ -1,9 +1,8 @@
 import { css } from '@emotion/react';
-import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { deleteCookie, getCookie, getCookies, hasCookie, setCookie } from 'cookies-next';
-import { useEffect, useState } from 'react';
+import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
+import { useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -35,6 +34,7 @@ const SiteHeader = () => {
             isLoggedIn: true,
             name: response.data.name,
             email: response.data.email,
+            id: response.data.id,
           });
         })
         .catch((error) => {
@@ -104,6 +104,9 @@ const SiteHeader = () => {
             `}>
             <Link href="/">DIMIPAY</Link>
           </span>
+          <NavigateButton router={router} destination="/products">
+            일반상품
+          </NavigateButton>
           <NavigateButton router={router} destination="/subscribe">
             정기구독
           </NavigateButton>

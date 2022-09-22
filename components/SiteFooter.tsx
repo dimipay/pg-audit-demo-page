@@ -77,9 +77,11 @@ const SiteFooter = () => {
               font-size: 0.9rem;
             }
           `}>
-          <span>대표자 : 박성수</span>
+          <span>디미고사회적협동조합 대표자 : 박성수</span>
           <span>사업자등록번호 : 480-82-00518</span>
-          <span>이메일 : dimicafe@dimigo.hs.kr</span>
+          <span>통신판매업 신고번호 : 2022-경기안산-2151</span>
+          <span>경기도 안산시 단원구 사세충열로 94</span>
+          <span>TEL : 031)363-7800</span>
         </div>
       </nav>
     </footer>

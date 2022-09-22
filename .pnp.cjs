@@ -48,6 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.7.11"],\
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.34.0"],\
             ["@typescript-eslint/parser", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.34.0"],\
             ["airbnb", "npm:0.0.2"],\
@@ -76,6 +77,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-spinners", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.13.4"],\
             ["recoil", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.7.5"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"],\
+            ["uuid", "npm:9.0.0"],\
             ["webpack", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.74.0"]\
           ],\
           "linkType": "SOFT"\
@@ -3725,6 +3727,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/uuid", [\
+        ["npm:8.3.4", {\
+          "packageLocation": "./.yarn/cache/@types-uuid-npm-8.3.4-7547f4402c-6f11f3ff70.zip/node_modules/@types/uuid/",\
+          "packageDependencies": [\
+            ["@types/uuid", "npm:8.3.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@typescript-eslint/eslint-plugin", [\
         ["npm:5.34.0", {\
           "packageLocation": "./.yarn/cache/@typescript-eslint-eslint-plugin-npm-5.34.0-1762ecee2e-c984549931.zip/node_modules/@typescript-eslint/eslint-plugin/",\
@@ -5564,6 +5575,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.7.11"],\
             ["@types/react", "npm:18.0.17"],\
             ["@types/react-dom", "npm:18.0.6"],\
+            ["@types/uuid", "npm:8.3.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.34.0"],\
             ["@typescript-eslint/parser", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.34.0"],\
             ["airbnb", "npm:0.0.2"],\
@@ -5592,6 +5604,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-spinners", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.13.4"],\
             ["recoil", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:0.7.5"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"],\
+            ["uuid", "npm:9.0.0"],\
             ["webpack", "virtual:e19108dbd18a9ce25a304118a4c1c0c3d299adad2fc047439b0a7022f02caf1d8e575a560b325179950babb5e3c45e8ec7686b4a7a8c11b59ca9648d2922e29f#npm:5.74.0"]\
           ],\
           "linkType": "SOFT"\
@@ -10664,6 +10677,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/utils-merge-npm-1.0.1-363bbdfbca-c810954932.zip/node_modules/utils-merge/",\
           "packageDependencies": [\
             ["utils-merge", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["uuid", [\
+        ["npm:9.0.0", {\
+          "packageLocation": "./.yarn/cache/uuid-npm-9.0.0-46c41e3e43-8dd2c83c43.zip/node_modules/uuid/",\
+          "packageDependencies": [\
+            ["uuid", "npm:9.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

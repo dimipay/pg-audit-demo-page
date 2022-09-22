@@ -6,5 +6,6 @@ export const globalUserState = atom({
     isLoggedIn: false,
     name: '',
     email: '',
+    id: '',
   },
 });

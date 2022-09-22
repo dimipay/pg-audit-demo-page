@@ -336,6 +336,7 @@ const UserProfilePage: React.FC = () => {
               isLoggedIn: true,
               name: response.data.name,
               email: response.data.email,
+              id: response.data.id,
             });
           })
           .catch((error) => {
@@ -489,6 +490,7 @@ const UserProfilePage: React.FC = () => {
                 isLoggedIn: false,
                 name: '',
                 email: '',
+                id: '',
               });
               router.push('/');
             }}>

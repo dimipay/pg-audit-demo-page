@@ -1,15 +1,14 @@
 import { css } from '@emotion/react';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import SiteHeader from '../../components/SiteHeader';
-import SiteFooter from '../../components/SiteFooter';
-import TextInput from '../../components/form/TextInput';
+import SiteHeader from '../components/SiteHeader';
+import SiteFooter from '../components/SiteFooter';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { globalUserState } from '../../libs/atom';
+import { globalUserState } from '../libs/atom';
 import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
-import SelectBox from '../../components/form/SelectBox';
+import SelectBox from '../components/form/SelectBox';
 
 interface SubscribeProduct {
   id: string;

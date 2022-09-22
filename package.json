@@ -30,7 +30,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.2",
     "react-spinners": "^0.13.4",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -41,6 +42,7 @@
     "@types/node": "^18.7.11",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.34.0",
     "@typescript-eslint/parser": "^5.34.0",
     "airbnb": "^0.0.2",
