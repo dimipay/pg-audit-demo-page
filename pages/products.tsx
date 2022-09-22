@@ -14,6 +14,7 @@ import JadooTeaJpg from '../public/images/jadoo_tea.jpg';
 import LemonTeaPng from '../public/images/lemon_tea.png';
 import PeachTeaPng from '../public/images/peach_tea.png';
 import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
 
 interface IProduct {
   productId: number;
@@ -114,7 +115,9 @@ const Product: React.FC<{
   );
 };
 
-const Products = () => {
+const Products: React.FC<{
+  clientId: string;
+}> = ({ clientId }) => {
   const [user] = useRecoilState(globalUserState);
 
   const router = useRouter();
@@ -124,7 +127,7 @@ const Products = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     window.AUTHNICE.requestPay({
-      clientId: 'd68b26bd5adb4b0695b44da194bb0e2e',
+      clientId: clientId,
       method: 'card',
       orderId: uuidv4(),
       amount: product.productPrice,
@@ -228,6 +231,14 @@ const Products = () => {
       <SiteFooter />
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      clientId: process.env.NICEPAY_CLIENT_ID,
+    },
+  };
 };
 
 export default Products;
