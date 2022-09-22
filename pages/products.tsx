@@ -120,16 +120,17 @@ const Products = () => {
   const router = useRouter();
 
   const handleProduct = (product: IProduct) => {
-    if (!user.isLoggedIn) router.push('/user/login');
+    if (!user.isLoggedIn) return router.push('/user/login');
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     window.AUTHNICE.requestPay({
-      clientId: 'S2_d68b26bd5adb4b0695b44da194bb0e2e',
+      clientId: 'd68b26bd5adb4b0695b44da194bb0e2e',
       method: 'card',
       orderId: uuidv4(),
       amount: product.productPrice,
       goodsName: product.productName,
       returnUrl: 'https://dimipay-pg-exam.herokuapp.com/payment/serverAuth',
+      mailUserId: user.id,
       mailReserved: JSON.stringify({
         id: user.id,
       }),
