@@ -79,16 +79,16 @@ const SiteFooter = () => {
               }
             `}>
             <span>
-              <Link href="/">환불정보</Link>
+              <Link href="/docs/refundInfo">환불정보</Link>
             </span>
             <span>
-              <Link href="/">배송/교환규정</Link>
+              <Link href="/docs/deliveryInfo">배송/교환규정</Link>
             </span>
             <span>
-              <Link href="/">이용약관</Link>
+              <Link href="/docs/terms">이용약관</Link>
             </span>
             <span>
-              <Link href="/">개인정보취급방침</Link>
+              <Link href="/docs/personalData">개인정보취급방침</Link>
             </span>
           </div>
         </div>
