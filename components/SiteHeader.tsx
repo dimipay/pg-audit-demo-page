@@ -23,7 +23,7 @@ const SiteHeader = () => {
 
   useEffect(() => {
     if (hasCookie('accessToken')) {
-      axios('https://dimipay-pg-exam.herokuapp.com/auth/user', {
+      axios('https://dimipay-pg.herokuapp.com/auth/user', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${getCookie('accessToken')}`,
@@ -41,7 +41,7 @@ const SiteHeader = () => {
           console.log(error);
           if (error.response.data.code === 'TOKEN_EXPIRED') {
             axios
-              .post<RefreshResponse>('https://dimipay-pg-exam.herokuapp.com/auth/refresh', {
+              .post<RefreshResponse>('https://dimipay-pg.herokuapp.com/auth/refresh', {
                 refreshToken: getCookie('refreshToken'),
               })
               .then((response) => {

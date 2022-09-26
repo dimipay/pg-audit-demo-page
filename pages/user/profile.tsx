@@ -93,7 +93,7 @@ const OnCardModal: React.FC<{
   const fetchAddCard = async (data: FieldValues) => {
     try {
       await axios.post<CardKeyResponse>(
-        'https://dimipay-pg-exam.herokuapp.com/payment/key',
+        'https://dimipay-pg.herokuapp.com/payment/key',
         {
           cardNo: data.cardNo,
           expYear: data.expYear,
@@ -325,7 +325,7 @@ const UserProfilePage: React.FC = () => {
   useEffect(() => {
     if (!user.isLoggedIn) {
       if (hasCookie('accessToken')) {
-        axios('https://dimipay-pg-exam.herokuapp.com/auth/user', {
+        axios('https://dimipay-pg.herokuapp.com/auth/user', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${getCookie('accessToken')}`,
@@ -344,7 +344,7 @@ const UserProfilePage: React.FC = () => {
             if (error.response.data.code === 'TOKEN_EXPIRED') {
               axios
                 .post<RefreshResponse>(
-                  'https://dimipay-pg-exam.herokuapp.com/auth/refresh',
+                  'https://dimipay-pg.herokuapp.com/auth/refresh',
                   {},
                   {
                     headers: {
@@ -373,7 +373,7 @@ const UserProfilePage: React.FC = () => {
       return;
     } else {
       axios
-        .get<Array<CardInfo>>('https://dimipay-pg-exam.herokuapp.com/payment/key', {
+        .get<Array<CardInfo>>('https://dimipay-pg.herokuapp.com/payment/key', {
           headers: {
             Authorization: `Bearer ${getCookie('accessToken')}`,
           },
@@ -385,7 +385,7 @@ const UserProfilePage: React.FC = () => {
           console.log(error);
         });
       axios
-        .get<Array<PayHistoryResponse>>('https://dimipay-pg-exam.herokuapp.com/payment/history', {
+        .get<Array<PayHistoryResponse>>('https://dimipay-pg.herokuapp.com/payment/history', {
           headers: {
             Authorization: `Bearer ${getCookie('accessToken')}`,
           },

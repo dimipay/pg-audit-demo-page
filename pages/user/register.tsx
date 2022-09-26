@@ -28,7 +28,7 @@ const RegisterPage = () => {
   const fetchRegister = async (data: FieldValues) => {
     try {
       const response = await axios.post<RegisterResponse>(
-        'https://dimipay-pg-exam.herokuapp.com/auth/signup',
+        'https://dimipay-pg.herokuapp.com/auth/signup',
         {
           email: data.email,
           password: data.password,

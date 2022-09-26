@@ -131,7 +131,7 @@ const Products: React.FC<{
       orderId: Math.floor(Math.random() * 10 ** 8).toString(),
       amount: product.productPrice,
       goodsName: product.productName,
-      returnUrl: 'https://dimipay-pg-exam.herokuapp.com/payment/serverAuth',
+      returnUrl: 'https://dimipay-pg.herokuapp.com/payment/serverAuth',
       mallReserved: `{"id":"${user.id}"}`,
       fnError: (err) => {
         console.log(err);

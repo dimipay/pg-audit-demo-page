@@ -26,7 +26,7 @@ const LoginPage = () => {
   const fetchLogin = async (data: FieldValues) => {
     try {
       const response = await axios.post<LoginResponse>(
-        'https://dimipay-pg-exam.herokuapp.com/auth/signin',
+        'https://dimipay-pg.herokuapp.com/auth/signin',
         {
           email: data.email,
           password: data.password,
@@ -43,7 +43,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (hasCookie('accessToken')) {
-      axios('https://dimipay-pg-exam.herokuapp.com/auth/user', {
+      axios('https://dimipay-pg.herokuapp.com/auth/user', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${getCookie('accessToken')}`,
@@ -57,7 +57,7 @@ const LoginPage = () => {
           if (error.response.data.code === 'TOKEN_EXPIRED') {
             axios
               .post<RefreshResponse>(
-                'https://dimipay-pg-exam.herokuapp.com/auth/refresh',
+                'https://dimipay-pg.herokuapp.com/auth/refresh',
                 {},
                 {
                   headers: {

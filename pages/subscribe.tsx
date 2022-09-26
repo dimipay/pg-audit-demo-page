@@ -43,7 +43,7 @@ const OnSubModal: React.FC<{
   const fetchPay = async (data: FieldValues) => {
     try {
       const response = await axios.post<PayResponse>(
-        'https://dimipay-pg-exam.herokuapp.com/payment/pay',
+        'https://dimipay-pg.herokuapp.com/payment/pay',
         {
           cardId: data.cardId,
           productId: product.id,
@@ -282,7 +282,7 @@ const SubscribeInfoPage: React.FC<{
 
   useEffect(() => {
     axios
-      .get<Array<SubscribeProduct>>('https://dimipay-pg-exam.herokuapp.com/products')
+      .get<Array<SubscribeProduct>>('https://dimipay-pg.herokuapp.com/products')
       .then((response) => {
         setProducts(response.data);
         setSelectedProduct(response.data[0]);
@@ -295,7 +295,7 @@ const SubscribeInfoPage: React.FC<{
   useEffect(() => {
     if (user.isLoggedIn) {
       axios
-        .get<Array<CardInfo>>('https://dimipay-pg-exam.herokuapp.com/payment/key', {
+        .get<Array<CardInfo>>('https://dimipay-pg.herokuapp.com/payment/key', {
           headers: {
             Authorization: `Bearer ${getCookie('accessToken')}`,
           },
